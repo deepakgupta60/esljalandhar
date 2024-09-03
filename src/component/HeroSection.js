@@ -122,17 +122,16 @@ const Hero = () => {
         <rect className="book" x="200" y="600" width="20" height="30" fill="#ff7e5f" />
       </BackgroundSVG>
       <BrandName>
-        ESL Jalandhar
+        Ethics Student Library
       </BrandName>
       <HeroText>
         Something Extraordinary is on the Way
       </HeroText>
       <SubText>
-        We're building a space where your focus will flourish stay tuned for our grand reveal!
+        We're building a space where your focus will flourish—stay tuned for our grand reveal!
       </SubText>
     </HeroSection>
   );
 };
 
 export default Hero;
-                                                                    
