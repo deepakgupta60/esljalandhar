@@ -1,9 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { gsap } from 'gsap';
-import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-
-gsap.registerPlugin(MotionPathPlugin);
 
 // Styled component for the Hero Section
 const HeroSection = styled.section`
@@ -98,36 +95,31 @@ const Hero = () => {
   const svgRef = useRef(null);
 
   useEffect(() => {
-    const circles = svgRef.current.querySelectorAll('.circle');
-    const blobs = svgRef.current.querySelectorAll('.blob');
+    const books = svgRef.current.querySelectorAll('.book');
 
-    gsap.to(circles, {
-      duration: 10,
-      repeat: -1,
-      motionPath: {
-        path: [{x: 50, y: -100}, {x: 150, y: 0}, {x: 50, y: 100}, {x: -100, y: 50}, {x: 0, y: -50}],
-        curviness: 1.25,
-        autoRotate: true
-      },
-      ease: "power1.inOut"
-    });
-
-    gsap.to(blobs, {
-      duration: 8,
-      scale: 1.5,
-      rotate: 360,
+    gsap.to(books, {
+      duration: 20,
+      x: () => Math.random() * 800 - 400,
+      y: () => Math.random() * 800 - 400,
+      rotate: () => Math.random() * 360,
       repeat: -1,
       yoyo: true,
-      ease: "sine.inOut"
+      ease: "power1.inOut",
+      stagger: {
+        amount: 5,
+        from: "random"
+      }
     });
   }, []);
 
   return (
     <HeroSection>
       <BackgroundSVG ref={svgRef} viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
-        <circle className="circle" cx="200" cy="200" r="100" fill="#ff6b6b" />
-        <circle className="circle" cx="600" cy="600" r="50" fill="#feb47b" />
-        <path className="blob" fill="#86a8e7" d="M57.6,-50.2C71.5,-30.8,71.7,-6.5,62.9,10.8C54.1,28.1,36.3,38.3,19.9,49.2C3.5,60.1,-11.5,71.7,-28.2,71.8C-44.9,71.8,-63.3,60.3,-63.3,44.4C-63.2,28.4,-44.7,8,-31.9,-10.6C-19.2,-29.2,-12.1,-46,-1.7,-46.5C8.8,-47,17.6,-31.3,30,-23.2C42.5,-15.1,58.6,-14.7,57.6,-50.2Z" transform="translate(300 300)" />
+        <rect className="book" x="100" y="100" width="30" height="40" fill="#ff6b6b" />
+        <rect className="book" x="300" y="200" width="20" height="30" fill="#feb47b" />
+        <rect className="book" x="500" y="300" width="25" height="35" fill="#86a8e7" />
+        <rect className="book" x="700" y="400" width="35" height="50" fill="#d4fc79" />
+        <rect className="book" x="200" y="600" width="20" height="30" fill="#ff7e5f" />
       </BackgroundSVG>
       <BrandName>
         ESL Jalandhar
@@ -136,7 +128,7 @@ const Hero = () => {
         Something Extraordinary is on the Way
       </HeroText>
       <SubText>
-        We're building a space where your focus will flourish—stay tuned for our grand reveal!
+        We're building a space where your focus will flourish stay tuned for our grand reveal!
       </SubText>
     </HeroSection>
   );
